@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import batteryImg from '../../img/battery.png';
+
+import InputPanel from './InputPanel/InputPanel';
+import Display from './Display/Display';
 
 
 const getRandomArbitary= (min, max)=>
@@ -99,115 +101,15 @@ const MultTable = ({difficultyLevel,batteryCount,incBatteryCount}) => {
 
   return (
     <div className='mult-table'>
-      <Dysplay gameActive={gameActive} startGame = {startGame} a={a} b={b} result={result} answers={answers}/>
+      <Display gameActive={gameActive} startGame = {startGame} a={a} b={b} result={result} answers={answers}/>
       <InputPanel wrongAnswers = {wrongAnswers} goodAnswers = {goodAnswers} batteryCount={batteryCount} batteryCharge={batteryCharge} onKeyClicked={onKeyClicked}/>     
     </div>
 
   )
 }
 
-const InputPanel = ({wrongAnswers,goodAnswers,batteryCount,batteryCharge,onKeyClicked}) => {
-
-  
-  return (
-    <div className='input-panel'>
-      <div className='input-panel__left-panel'>
-        <AnswersDispaly title='Ошибочные ответы:' answers={wrongAnswers} isWrong={true} />
-        <AnswersDispaly title='Правильные ответы:' answers={goodAnswers} isWrong={false} />
-      </div>
-      <div className='input-panel__center-panel'>
-        <KeyBoard onKeyClicked={onKeyClicked}/>
-      </div>
-      <div className='input-panel__right-panel'>
-        <BatteryPanel batteryCount={batteryCount} batteryCharge={batteryCharge} />
-      </div>
-    </div>
-  )
-}
-
-const KeyBoard = ({ onKeyClicked }) => {
-
-  const onButtonCkicked = (e) => {
-    const val = e.target.value;
-    onKeyClicked(val);
-  }
-
-  const inputChars = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'del', '0', 'Ok']
-
-  const InputElements = inputChars.map(ch => <button key={ch} className='input-panel__button' onClick={onButtonCkicked} value={ch}>{ch}</button>)
-
-  return (
-    <React.Fragment>
-      {InputElements}
-    </React.Fragment>
-  )
-}
 
 
-const ChargedBattery = ({ batteryCharge }) => {
-
-  const createBatary = () => {
-
-    let result = [];
-    for (let i = 90; i >= 0; i = i - 10) {
-      if (i < batteryCharge) {
-        result.push(<div key={i} className='charged-battery__charged-element'>+</div>);
-      }
-      else {
-        result.push(<div key={i} className='charged-battery__empty-element'>-</div>);
-      }
-    }
-    return result;
-  }
-
-  return <div className='charged-battery'>
-    {createBatary()}
-  </div>
-
-}
-
-const AnswersDispaly = ({title,answers,isWrong}) => {
-
-  const answersElements = answers.map((answ,i) => <div key={i}>{answ}</div>)
-
-  return <React.Fragment>
-    <div className='answers-display'>
-      <div className='answers-display__title'>{title}</div>
-      <div className={isWrong?'answers-display__body-wrong':'answers-display__body'}>
-        {answersElements}
-      </div>
-    </div>
-  </React.Fragment>
-}
-
-const BatteryPanel = ({batteryCount, batteryCharge}) => {
-  return (
-    <div className='battery-panel'>
-      <div className='battery-panel__top-panel'>
-        {batteryCount}<img className='battery-panel__battery-icon' src={batteryImg} />
-      </div>
-      <div className='battery-panel__body'>
-        <ChargedBattery batteryCharge={batteryCharge} />
-      </div>
-    </div>
-  )
-}
-
-const Dysplay = ({gameActive,startGame,a,b,result,answers}) => {
-
-  const SatatusItems = Object.keys(answers).map(answKey => <div key={answKey}
-    className={('display__status-item') + ' ' + ((answers[answKey] === null) ? 'display__status-item_none' : (answers[answKey]) ? 'display__status-item_ok' : 'display__status-item_failed')} >
-    {answKey}</div>)
-
-  return (
-    <div className='display'>
-      <div className='display__status-panel'>
-        {SatatusItems}
-      </div>
-      <div className='display__main-panel'> {gameActive ? `${a}x${b}=${result}` : <button className='display__main-panel__button' onClick={startGame}>Начать!</button>} </div>
-    </div>
-  )
-}
 
 export default MultTable;
 

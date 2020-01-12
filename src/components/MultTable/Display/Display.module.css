@@ -1,0 +1,62 @@
+.display{
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+    height: 40vh;
+  }
+  
+  .status_panel{
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: stretch;
+  }
+  .status_item{
+    border: solid 1px; 
+    width: 10%;
+  }
+  
+  .status_item_none{
+    background-color: white;
+  }
+  .status_item_ok{
+    background-color: greenyellow;
+  }
+  .status_item_failed{
+    background-color: red;
+  }
+  
+  .main_panel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+    font-size: 10vh;
+  }
+  
+  
+  
+  .main_panel_button{
+  
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+  
+    padding: 1vmin;
+    font-size: 10vh;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+  
+    background-color: aquamarine; 
+    color: black; 
+    border: 2px solid rgb(224, 76, 31);
+  }
+  .main_panel_button:hover {
+    background-color: rgb(224, 76, 31);
+    color: aquamarine;
+  }
+  
+  .main_panel_button:focus {
+    outline: none;
+  }
+  
+  

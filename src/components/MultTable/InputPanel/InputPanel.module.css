@@ -1,0 +1,37 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid black;
+    
+    
+  }
+  .left_panel{
+    display: none;
+    
+  }
+  .right_panel{
+    display: none;
+
+    
+  }
+  .center_panel{
+    display: block;
+  }
+  
+  @media (min-width:769px) {
+    .right_panel {
+       display: block;
+    }
+
+    .left_panel{
+      display: block;
+    }
+
+    .wrapper {
+      grid-template-columns: 1fr 1fr 1fr;
+      
+      
+    }
+
+  }
+ 

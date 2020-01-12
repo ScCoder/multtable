@@ -1,0 +1,38 @@
+
+.wrapper{
+    display: grid;
+    padding: 1vh;
+    grid-template-rows: 1fr 9fr;  
+  }
+  
+  .top_panel{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+  .battery_icon{
+    width: 5%;
+    height: auto;
+  }
+  
+  .body{
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+  }
+  
+  .charged_battery{
+    width: 20%;
+    border: solid seagreen;
+    
+  
+  }
+  
+  .charged_battery__charged_element{
+    background-color: lime
+  
+  }
+  
+  .charged_battery__empty_element{
+    background-color: rgb(224, 208, 208)
+  }

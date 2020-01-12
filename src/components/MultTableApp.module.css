@@ -1,0 +1,50 @@
+.page {
+    display: grid;
+    grid-template-areas: 
+      'h h h'
+      'c c c'
+      'f f f';
+    height: 98vh; 
+    width: 98vw;
+    background-color: aquamarine;
+   
+  
+  }
+  
+.header {
+    grid-area: h; 
+    border: solid 1px;
+  }
+  
+.content {
+    grid-area: c;
+    border-left: solid 1px;
+    border-right: solid 1px;
+  }
+  
+.profile {
+    grid-area: p;
+    border-right: solid 1px;
+    display: none;
+}
+  
+
+.footer {
+    grid-area: f;
+    border: solid 1px;
+  }
+  
+  @media (min-width:769px) {
+    .profile {
+       display: block;
+    }
+
+    .page {
+        grid-template-areas: 
+          'h h h'
+          'c c p'
+          'f f f';
+    }
+         
+
+  }

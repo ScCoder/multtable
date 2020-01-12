@@ -1,0 +1,36 @@
+.wrapper{
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1vh;
+        gap: 1vh;
+        padding: 1vh;      
+}
+      
+
+.button{
+    border-radius: 5px;
+    
+    text-align: center;
+    text-decoration: none;
+    height: 9vh;
+    font-size: 2vh;
+  
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+  
+    background-color: aquamarine; 
+    color: black; 
+    border: 2px solid rgb(224, 76, 31);
+  }
+  .button:hover {
+    background-color: rgb(224, 76, 31);
+    color: aquamarine;
+  }
+  
+  .button:focus {
+    outline: none;
+  }
+  
+  
