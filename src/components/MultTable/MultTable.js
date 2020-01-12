@@ -72,8 +72,6 @@ const MultTable = ({difficultyLevel,batteryCount,incBatteryCount}) => {
     }  
   }
 
-
-
   const onKeyClicked = (val) => {
     if (!gameActive) { return; }
     switch (val) {
