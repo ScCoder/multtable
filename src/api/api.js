@@ -27,3 +27,19 @@ export const user = {
 
     }
 }
+
+export const questions = {
+    saveQuestionsStats : (answers) => {
+
+        instance.post('questions',{answers}).then(
+            res => {
+                if (res.data.resultCode===0){
+                    alert("Сохранено!");     
+                } else {
+                    alert("Ошибка");
+                }
+            }
+        );
+
+    }
+}
