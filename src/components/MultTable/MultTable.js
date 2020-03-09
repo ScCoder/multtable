@@ -35,10 +35,9 @@ const MultTable = ({difficultyLevel,batteryCount,incBatteryCount}) => {
       if (answers[10].isCorrect != null){
         questionsApi.saveQuestionsStats(answers);
       }
-      questionsApi.getQuestions().then( data => {
-        console.log(data)
-        SetQuestions(data.questions) 
-      })
+    
+      SetQuestions(questionsApi.getQuestions()) 
+    
 
       
     }

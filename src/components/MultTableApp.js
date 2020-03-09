@@ -16,14 +16,12 @@ const MultTableApp = () => {
 
   useEffect(() => {
 
-    profileApi.getProfileData().then(data => {
-      console.log(data);
-      if (data.resultCode === 0) {
-        setBatteryCount(data.profileData.batteryCount);
-        setLevel(data.profileData.level);
-        setDifficultyLevel(1);//Заглушка
-      }
-    })
+    const profile = profileApi.getProfileData();
+      
+    setBatteryCount(profile.profileData.batteryCount);
+    setLevel(profile.profileData.level);
+    setDifficultyLevel(1);//Заглушка
+      
 
   }, [])
 
