@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 
 import InputPanel from './InputPanel/InputPanel';
 import Display from './Display/Display';
-
+import {questionsApi,profileApi} from '../../api/api';
 
 const getRandomArbitary= (min, max)=>
 {
@@ -12,11 +12,14 @@ const getRandomArbitary= (min, max)=>
 
 const MultTable = ({difficultyLevel,batteryCount,incBatteryCount}) => {
 
+  const [questions,SetQuestions] = useState([]);
+
   const [a,SetA] = useState(2)
   const [b,SetB] = useState(4)
   const [result,SetResult] = useState(8)
   
-  const initialAnswers = {1:null,2:null,3:null,4:null,5:null,6:null,7:null,8:null,9:null,10:null}
+  const initialAnswers = {1:{A:2,B:2,isCorrect:null},2:{A:2,B:2,isCorrect:null},3:{A:2,B:2,isCorrect:null},4:{A:2,B:2,isCorrect:null}
+    ,5:{A:2,B:2,isCorrect:null},6:{A:2,B:2,isCorrect:null},7:{A:2,B:2,isCorrect:null},8:{A:2,B:2,isCorrect:null},9:{A:2,B:2,isCorrect:null},10:{A:2,B:2,isCorrect:null}}
   const [answers,SetAnswers] = useState(initialAnswers)
 
   const [currentAnswer,SetCurrentAnswer] = useState(1)
@@ -26,9 +29,23 @@ const MultTable = ({difficultyLevel,batteryCount,incBatteryCount}) => {
 
   const [batteryCharge,setBatteryCharge] = useState(0);
 
+  useEffect( ()=>{
+    if (!gameActive){
+     
+      if (answers[10].isCorrect != null){
+        questionsApi.saveQuestionsStats(answers);
+      }
+      questionsApi.getQuestions().then( data => {
+        console.log(data)
+        SetQuestions(data.questions) 
+      })
+
+      
+    }
+  },[gameActive,answers]);
 
   const updateCharge = () => {
-    if ((batteryCharge + 10) == 100) {
+    if ((batteryCharge + 10) === 100) {
       incBatteryCount();
       setBatteryCharge(0)
     }
@@ -42,33 +59,52 @@ const MultTable = ({difficultyLevel,batteryCount,incBatteryCount}) => {
 
     const str = `${a}x${b}=${result}`;
 
-    if (isCorrect) {
-      setGoodAnswers([...goodAnswers,str])
-      updateCharge()
-      SetNewOperands()      
-    } else {
-      setWrongAnswers([...wrongAnswers,str])
-      setBatteryCharge(0)
-    }
-
     const newAnswers = { ...answers }
-    newAnswers[currentAnswer] = isCorrect
+
+    newAnswers[currentAnswer] = { A: a, B: b, isCorrect }
+
     SetAnswers(newAnswers)
 
-    SetCurrentAnswer(currentAnswer + 1)
+    const nextAnswer = currentAnswer + 1
+
+    if (isCorrect) {
+
+      setGoodAnswers([...goodAnswers, str])
+
+      updateCharge()
+
+    } else {
+
+      setWrongAnswers([...wrongAnswers, str])
+
+      setBatteryCharge(0)
+
+    }
+
+    SetCurrentAnswer(nextAnswer)
+
     if (currentAnswer == 10) {
+
       setGameActive(false);
+
+    } else {
+
+      if (isCorrect) {
+
+        SetNewOperands(nextAnswer)
+      }
     }
   }
 
-  const SetNewOperands = () =>{
+  const SetNewOperands = (currentAnswer) =>{
 
     if (getRandomArbitary(0, 1)) {
-      SetA(getRandomArbitary(2, difficultyLevel))
-      SetB(getRandomArbitary(2, 9)) 
+
+      SetA(questions[currentAnswer-1].A)
+      SetB(questions[currentAnswer-1].B) 
     } else {
-      SetA(getRandomArbitary(2, 9))
-      SetB(getRandomArbitary(2, difficultyLevel)) 
+      SetA(questions[currentAnswer-1].B)
+      SetB(questions[currentAnswer-1].A) 
     }  
   }
 
@@ -87,13 +123,14 @@ const MultTable = ({difficultyLevel,batteryCount,incBatteryCount}) => {
     }
   }
 
-  const startGame = () =>{
-    SetAnswers(initialAnswers)
+  const startGame = () =>{ 
     SetCurrentAnswer(1)
-    SetResult('');
-    setGameActive(true);
-    setWrongAnswers([]);
-    setGoodAnswers([]);
+    SetNewOperands(1)    
+    SetAnswers(initialAnswers)    
+    SetResult('')
+    setGameActive(true)
+    setWrongAnswers([])
+    setGoodAnswers([])
   }
 
 

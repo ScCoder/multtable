@@ -6,19 +6,19 @@ const instance = axios.create({
     
 )
 
-export const user = {
+export const profileApi = {
 
-    getUserData : () =>{
+    getProfileData: () =>{
 
-        return instance.get('profile?ID=1').then(res => {return res.data});
+        return instance.get('profile').then(res => {return res.data});
     },
 
-    saveUserData: (batteryCount) =>{
+    saveProfileData: (batteryCount,level) =>{
 
-        instance.post('profile',{ID:1,batteryCount:batteryCount}).then(
+        instance.post('profile',{profileData:{batteryCount,level}}).then(
             res => {
                 if (res.data.resultCode===0){
-                    alert("Сохранено!");     
+                   // alert("Сохранено!");     
                 } else {
                     alert("Ошибка");
                 }
@@ -28,18 +28,30 @@ export const user = {
     }
 }
 
-export const questions = {
+export const questionsApi = {
     saveQuestionsStats : (answers) => {
 
         instance.post('questions',{answers}).then(
             res => {
                 if (res.data.resultCode===0){
-                    alert("Сохранено!");     
+                  //  alert("Сохранено!");     
                 } else {
                     alert("Ошибка");
                 }
             }
         );
+    },
 
+    getQuestions : () => {
+        return instance.get('questions').then(
+            res => {
+                if (res.data.resultCode===0){
+                    return res.data 
+                }else{
+                    alert("Ошибка");
+                }
+            }
+            );
     }
+
 }

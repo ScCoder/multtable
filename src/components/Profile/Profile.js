@@ -1,9 +1,11 @@
 import React from 'react';
+import robotImg from '../../img/robot.png';
 
-const Profile = () => {
+const Profile = ({level}) => {
     return (
-        <div >            
-             {<img className = 'profile__img' src='http://wowwee.ru/i/robosapien_1.jpg'/> }
+        <div >     
+            <div>Текущий уровень: {level}</div>       
+             {<img className = 'profile__img' src={robotImg}/> }
         </div>
     )
 }

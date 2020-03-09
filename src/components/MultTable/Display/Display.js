@@ -4,7 +4,7 @@ import s from './Display.module.css';
 const Display = ({gameActive,startGame,a,b,result,answers}) => {
 
     const SatatusItems = Object.keys(answers).map(answKey => <div key={answKey}
-      className={s.status_item + ' ' + ((answers[answKey] === null) ? s.status_item_none : (answers[answKey]) ? s.status_item_ok : s.status_item_failed)} >
+      className={s.status_item + ' ' + ((answers[answKey].isCorrect === null) ? s.status_item_none : (answers[answKey].isCorrect) ? s.status_item_ok : s.status_item_failed)} >
       {answKey}</div>)
   
     return (
