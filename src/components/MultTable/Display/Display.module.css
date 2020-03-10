@@ -1,6 +1,6 @@
 .display{
     display: grid;
-    grid-template-rows: 1fr 9fr;
+    grid-template-rows: 1fr 1fr 8fr;
     height: 40vh;
   }
   
@@ -24,6 +24,12 @@
     background-color: red;
   }
   
+  .battery_count{
+    display: flex;
+    padding-right:  1vmin;
+    justify-content: flex-end;
+  }
+
   .main_panel{
     display: flex;
     justify-content: center;
@@ -31,6 +37,7 @@
     background-color: aquamarine;
     font-size: 10vh;
   }
+  
   
   
   
