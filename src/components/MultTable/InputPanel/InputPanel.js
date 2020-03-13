@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './InputPanel.module.css';
 import KeyBoard from './KeyBoard/KeyBoard';
-import BatteryPanel from './BatteryPanel/BatteryPanel';
 import AnswersPannel from './AnswersPannel/AnswersPannel';
 
 const InputPanel = ({wrongAnswers,goodAnswers,batteryCount,batteryCharge,onKeyClicked}) => {
@@ -13,8 +12,7 @@ const InputPanel = ({wrongAnswers,goodAnswers,batteryCount,batteryCharge,onKeyCl
         <div className={s.center_panel}>
           <KeyBoard onKeyClicked={onKeyClicked}/>
         </div>
-        <div className={s.right_panel}>
-          <BatteryPanel batteryCount={batteryCount} batteryCharge={batteryCharge} />
+        <div className={s.right_panel}>          
         </div>
       </div>
     )

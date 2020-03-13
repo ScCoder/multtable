@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/multtable/precache-manifest.40784fe456cf9f7ba1b2756e124ab740.js"
+  "/multtable/precache-manifest.5bd84e1fcb12ddae2ce916bcf133b834.js"
 );
 
 self.addEventListener('message', (event) => {
