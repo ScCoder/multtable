@@ -24,11 +24,22 @@
     background-color: red;
   }
   
-  .battery_count{
-    display: flex;
-    padding-right:  1vmin;
-    justify-content: flex-end;
+  .progress_panel{
+    display: grid;
+    grid-template-columns: 8fr 2fr;
   }
+
+  .progress_panel_left{
+    display: flex;
+  }
+
+  .progress_panel_right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
 
   .main_panel{
     display: flex;

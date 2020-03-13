@@ -135,7 +135,7 @@ const MultTable = ({difficultyLevel,batteryCount,incBatteryCount}) => {
 
   return (
     <div className='mult-table'>
-      <Display gameActive={gameActive} startGame = {startGame} a={a} b={b} result={result} answers={answers} batteryCount={batteryCount}/>
+      <Display gameActive={gameActive} startGame = {startGame} a={a} b={b} result={result} answers={answers} batteryCount={batteryCount} batteryCharge={batteryCharge}/>
       <InputPanel wrongAnswers = {wrongAnswers} goodAnswers = {goodAnswers} batteryCount={batteryCount} batteryCharge={batteryCharge} onKeyClicked={onKeyClicked}/>     
     </div>
 
